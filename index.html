@@ -25,18 +25,15 @@ function getReadingHumedad(){
    	$.get(urlHumedad, {access_token: accessToken}, callback);
 }
 
-function getReading(){
-   	$.get(urlEstado, {access_token: accessToken}, callback);
-}
 function switchOn()
 {
-	$.post(url, {params: "on", access_token: accessToken });
+	$.post(urlEstado, {params: "on", access_token: accessToken });
 }  
 
 </script>
 <style>
 	body {
-		background-image: url(./Media/peces.jpeg);
+		background-color: khaki;
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-size: cover;
@@ -77,9 +74,6 @@ function switchOn()
 	<h1> Dispensador de dulces </h1>
 
 	<input style="height:180px; width:350px;" id="botonON" type="button" onClick="switchOn()" value="DULCES" />
-
-	<div class="circulogreen" id="cgreen"></div>
-	<div class="circulored" id="cred"></div>
 </div>
 <div id="gage" style="width: 600px; height: 660px; margin-left: 600px;">
 </div>
