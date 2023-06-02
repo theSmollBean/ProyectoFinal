@@ -21,7 +21,7 @@ function callback(data, status){
 		alert("There was a problem");
 	}
 }
-function getReadingHumedad(){
+function getReading(){
    	$.get(urlHumedad, {access_token: accessToken}, callback);
 }
 
@@ -86,7 +86,7 @@ var g = new JustGage({
     max: 100,
     title: "Humedad (%)"
 });
-getReadingHumedad();
+getReading();
 </script>
 
 </body>
