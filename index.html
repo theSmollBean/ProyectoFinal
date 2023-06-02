@@ -1,93 +1,97 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="raphael-2.1.4.min.js"></script>
-<script src="justgage.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./raphael-2.1.4.min.js"></script>
+    <script src="./justgage.js"></script>
 
-<script>
-var accessToken = "37d119fef414cd9b3b6a2cca12e0ab4b0df17bd2";
-var deviceID = "1d0026000d47373334323233"
-var urlHumedad = "https://api.particle.io/v1/devices/" + deviceID + "/humedad";
-var urlEstado = "https://api.particle.io/v1/devices/" + deviceID + "/on";
+    <script>
+    var accessToken = "37d119fef414cd9b3b6a2cca12e0ab4b0df17bd2";
+    var deviceID = "1d0026000d47373334323233"
+    var urlHumedad = "https://api.particle.io/v1/devices/" + deviceID + "/humedad";
+    var urlEstado = "https://api.particle.io/v1/devices/" + deviceID + "/on";
 
-function callback(data, status){
-	if (status == "success") {
-		h = parseFloat(data.result);
-		h = h.toFixed(2);
-		g.refresh(h);
-		setTimeout(getReading, 2000);
-	}
-	else {
-		alert("There was a problem");
-	}
-}
-function getReading(){
-   	$.get(urlHumedad, {access_token: accessToken}, callback);
-}
+    function callback(data, status){
+        if (status == "success") {
+            h = parseFloat(data.result);
+            h = h.toFixed(2);
+            g.refresh(h);
+            setTimeout(getReading, 2000);
+        }
+        else {
+            alert("There was a problem");
+        }
+    }
+    function getReading(){
+        $.get(urlHumedad, {access_token: accessToken}, callback);
+    }
 
-function switchOn()
-{
-	$.post(urlEstado, {params: "on", access_token: accessToken });
-}  
+    function switchOn()
+    {
+        $.post(urlEstado, {params: "on", access_token: accessToken });
+    }  
 
-</script>
-<style>
-	body {
-		background-color: khaki;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-size: cover;
-	}
+    </script>
+    <style>
+        body {
+            background-color: khaki;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
 
-	h1{
-		position: absolute;
-		top: 20px;
-		right: 600px;
-		color: fuchsia;
-		font-family: Lucida Sans;
-		font-size: 50px;
-		text-shadow: 3px 3px 3px #ffffff;
-	}
+        h1{
+            position: absolute;
+            top: 20px;
+            right: 600px;
+            color: fuchsia;
+            font-family: Lucida Sans;
+            font-size: 50px;
+            text-shadow: 3px 3px 3px #ffffff;
+        }
 
-	input{
-		background-color: #6c4675;
-		border-radius: 15px;
-		border: 3.5px solid #612e6d;
-		display: inline-block;
-		cursor: pointer;
-		color: #ffffff;
-		font-family: Lucida Sans;
-		font-size: 30px;
-		font-weight: bold;
-		padding: 17px 24px;
-		text-decoration: none;
-		text-shadow: 3px 3px 3px #612e6d;
-		position: relative;
-		top: 350px;
-		left: 280px;
-	}
-</style>
-</head>	
-
+        input{
+            background-color: #6c4675;
+            border-radius: 15px;
+            border: 3.5px solid #612e6d;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Lucida Sans;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 17px 24px;
+            text-decoration: none;
+            text-shadow: 3px 3px 3px #612e6d;
+            position: relative;
+            top: 350px;
+            left: 280px;
+        }
+    </style>
+</head>
 <body>
-<div>
-	<h1> Dispensador de dulces </h1>
-
-	<input style="height:180px; width:350px;" id="botonON" type="button" onClick="switchOn()" value="DULCES" />
-</div>
-<div id="gage" style="width: 600px; height: 660px; margin-left: 600px;">
-</div>
-
+    <div>
+        <h1> Dispensador de dulces </h1>
+    
+        <input style="height:180px; width:350px;" id="botonON" type="button" onClick="switchOn()" value="DULCES" />
+    </div>
+    <div id="gage" style="width: 600px; height: 660px; margin-left: 600px;">
+    </div>
+    
 <script>
-var g = new JustGage({
-    id: "gage",
-    value: 0,
-    min: 0,
-    max: 100,
-    title: "Humedad (%)"
-});
-getReading();
+    var g = new JustGage({
+        id: "gage",
+        value: 0,
+        min: 0,
+        max: 100,
+        title: "Humedad (%)"
+    });
+    getReading();
 </script>
-
+    
 </body>
 </html>
